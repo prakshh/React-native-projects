@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     },
     card: {
         // flex: 1,     // had to remove this, check below to understand the issue resolution
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         width: 100,
@@ -92,6 +93,5 @@ flex
         If you remove the flex: 1 line from the container style, the behavior of your layout will change as follows:
 
             Without flex: 1: The container will not expand to fill the available space of its parent. Instead, it will only take up as much space as its children need. This can cause the container to shrink, potentially making the layout appear differently, especially if the parent view is large and the children are small.
-            Here’s the modified example and the
 
 */
