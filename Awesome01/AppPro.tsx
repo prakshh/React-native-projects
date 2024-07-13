@@ -51,3 +51,7 @@ explanation:
         Cross axis: Left to Right
 
 */
+
+/*
+This React Native app defines a component called AppPro that displays a "Hello AppPro" text message. The app uses the useColorScheme hook to determine if the device is in dark mode and adjusts the text color accordingly. The styles object defines two styles: whiteText for dark mode and darkText for light mode, along with a container style to center the content. The main-axis and cross-axis behavior in React Native differs from web development, with the main axis being top-to-bottom and the cross axis being left-to-right. This means that in the app, alignItems aligns children from left to right, and justifyContent aligns children from top to bottom.
+*/
