@@ -1,25 +1,38 @@
-import { View, Text, Image } from 'react-native'
-import { Tabs, Redirect } from 'expo-router';
+import React from 'react';
+import { View, Text, Image, ImageSourcePropType } from 'react-native';
+import { Tabs } from 'expo-router';
 
 import { icons } from '../../constants';
 
-const TabIcon = ({ icon, name, color, focused }) => {
+// Define types for the TabIcon props
+interface TabIconProps {
+  icon: ImageSourcePropType;
+  name: string;
+  color: string;
+  focused: boolean;
+}
+
+const TabIcon: React.FC<TabIconProps> = ({ icon, name, color, focused }) => {
   return (
-    // <View className="items-center justify-center gap-2">
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
       <Image
         source={icon}
         resizeMode="contain"
-        tintColor={color}
-        // className="w-6 h6"
         style={{ width: 24, height: 24, tintColor: color }} // Set size and color of the icon
       />
-      <Text className={`${focused ? 'font-psemibold' : 'font-pregular'} text-xs`} style={{ color: color }}>
+      <Text
+        style={{
+          color: color,
+          fontWeight: focused ? '600' : '400',
+          fontSize: 10,
+          marginTop: 6
+        }}
+      >
         {name}
       </Text>
     </View>
-  )
-}
+  );
+};
 
 const TabsLayout = () => {
   return (
@@ -28,13 +41,13 @@ const TabsLayout = () => {
         screenOptions={{
           tabBarShowLabel: false,
           tabBarActiveTintColor: '#FFA001',
-          tabBarInactiveTintColor: '@CDCDE0',
+          tabBarInactiveTintColor: '#CDCDE0',
           tabBarStyle: {
             backgroundColor: '#161622',
             borderTopWidth: 1,
             borderTopColor: '#232533',
-            height: 84
-          }
+            height: 84,
+          },
         }}
       >
         <Tabs.Screen
@@ -42,14 +55,9 @@ const TabsLayout = () => {
           options={{
             title: 'Home',
             headerShown: false,
-            tabBarIcon: ({ color, focused}) => (
-              <TabIcon 
-                icon={icons.home}
-                color={color}
-                name="Home"
-                focused={focused}
-              />
-            )
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon icon={icons.home} color={color} name="Home" focused={focused} />
+            ),
           }}
         />
         <Tabs.Screen
@@ -57,14 +65,9 @@ const TabsLayout = () => {
           options={{
             title: 'Bookmark',
             headerShown: false,
-            tabBarIcon: ({ color, focused}) => (
-              <TabIcon 
-                icon={icons.bookmark}
-                color={color}
-                name="Bookmark"
-                focused={focused}
-              />
-            )
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon icon={icons.bookmark} color={color} name="Bookmark" focused={focused} />
+            ),
           }}
         />
         <Tabs.Screen
@@ -72,14 +75,9 @@ const TabsLayout = () => {
           options={{
             title: 'Create',
             headerShown: false,
-            tabBarIcon: ({ color, focused}) => (
-              <TabIcon 
-                icon={icons.plus}
-                color={color}
-                name="Create"
-                focused={focused}
-              />
-            )
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon icon={icons.plus} color={color} name="Create" focused={focused} />
+            ),
           }}
         />
         <Tabs.Screen
@@ -87,19 +85,14 @@ const TabsLayout = () => {
           options={{
             title: 'Profile',
             headerShown: false,
-            tabBarIcon: ({ color, focused}) => (
-              <TabIcon 
-                icon={icons.profile}
-                color={color}
-                name="Profile"
-                focused={focused}
-              />
-            )
+            tabBarIcon: ({ color, focused }) => (
+              <TabIcon icon={icons.profile} color={color} name="Profile" focused={focused} />
+            ),
           }}
         />
       </Tabs>
     </>
-  )
-}
+  );
+};
 
-export default TabsLayout
+export default TabsLayout;
