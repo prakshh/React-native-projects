@@ -1,5 +1,8 @@
-import { View, Text, TextInput } from 'react-native'
+import { View, Text, TextInput, Image } from 'react-native'
 import React, { useState } from 'react'
+import { TouchableOpacity } from 'react-native'
+
+import { icons } from '../constants'
 
 const FormField = ({ title, value, placeholder, handleChangeText, otherStyles, ...props }) => {
     const [showPassword, setShowPassword] = useState(false)
@@ -11,7 +14,7 @@ const FormField = ({ title, value, placeholder, handleChangeText, otherStyles, .
         {/* The issue of the keyboard not showing up in React Native is often caused by an element above the TextInput (like a View component) not allowing the input to gain focus or the layout being improperly structured
             Here are some steps to fix this:
                 Remove className if you're using inline styles: React Native doesn’t support className for styling like in web development. Either replace it with style or if you're using a library like NativeWind, ensure it’s properly set up. */}
-        <View style={{ borderWidth: 2, borderColor: '#000000', width: '100%', height: 64, paddingHorizontal: 16, backgroundColor: '#1a1a1a', borderRadius: 16, justifyContent: 'center' }}
+        <View style={{ borderWidth: 2, borderColor: '#000000', width: '100%', height: 64, paddingHorizontal: 16, backgroundColor: '#1a1a1a', borderRadius: 16, justifyContent: 'center', flexDirection: 'row' }}
         >
         <TextInput
             className="flex-1 text-white font-psemibold text-base"
@@ -21,6 +24,14 @@ const FormField = ({ title, value, placeholder, handleChangeText, otherStyles, .
             onChangeText={handleChangeText}
             secureTextEntry={title === 'Password' && !showPassword}
         />
+
+        {title === 'Password' && (
+            <TouchableOpacity onPress={() =>
+             setShowPassword(!showPassword) 
+            }>
+                <Image source={ !showPassword ? icons.eye : icons.eyeHide } className="w-6 h6" resizeMode= 'contain' />
+            </TouchableOpacity>
+        )}
       </View>
     </View>
   )
