@@ -1,6 +1,6 @@
-import { Account, Avatars, Client, Databases, ID } from 'react-native-appwrite';
+import { Account, Avatars, Client, Databases, ID, Query } from 'react-native-appwrite';
 
-export const config = {
+export const appwriteConfig = {
     endpoint: 'https://cloud.appwrite.io/v1',
     platform: 'com.mergello.aora',
     projectId: '67179cd10017f4313e68',
@@ -14,9 +14,9 @@ export const config = {
 const client = new Client();
 
 client
-    .setEndpoint(config.endpoint)
-    .setProject(config.projectId)
-    .setPlatform(config.platform)
+    .setEndpoint(appwriteConfig.endpoint)
+    .setProject(appwriteConfig.projectId)
+    .setPlatform(appwriteConfig.platform)
 ;
 
 const account = new Account(client);
@@ -40,8 +40,8 @@ export const createUser = async (email, password, username) => {
         await signIn(email, password);
 
         const newUser = await databases.createDocument(
-            config.databaseId,
-            config.userCollectionId,
+            appwriteConfig.databaseId,
+            appwriteConfig.userCollectionId,
             ID.unique(),
             {
                 accountId: newAccount.$id,
