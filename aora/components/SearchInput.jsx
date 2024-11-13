@@ -17,13 +17,13 @@ const SearchInput = ({ title, value, placeholder, handleChangeText, otherStyles,
             onChangeText={handleChangeText}
             secureTextEntry={title === 'Password' && !showPassword}
         />
-        {title === 'Password' && (
-            <TouchableOpacity onPress={() =>
-             setShowPassword(!showPassword) 
-            }>
-                <Image source={ !showPassword ? icons.eye : icons.eyeHide } className="w-6 h6" resizeMode= 'contain' />
-            </TouchableOpacity>
-        )}
+        <TouchableOpacity>
+            <Image
+              source={icons.search}
+              className='w-5 h-5'
+              resizeMode='contain'
+            />
+        </TouchableOpacity>
     </View>
   )
 }
