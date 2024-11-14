@@ -18,7 +18,7 @@ const {
   userCollectionId,
   videoCollectionId,
   storageId,
-} = config;
+} = appwriteConfig;
 
 // Init your React Native SDK
 const client = new Client();
