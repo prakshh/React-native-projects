@@ -7,27 +7,10 @@ import SearchInput from '../../components/SearchInput'
 import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
 import { getAllPosts } from "../../lib/appwrite";
+import useAppwrite from '../../lib/useAppwrite'
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const response = await getAllPosts();
-        setData(response);
-      } catch(error) {
-        Alert.alert('Error', error.message)
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-
-  console.log(data);
+const { data: posts } = useAppwrite(getAllPosts);
 
   const [refreshing, setRefreshing] = useState(false)
 
@@ -36,6 +19,8 @@ const Home = () => {
     // re-call videos -> if any new videos appears
     setRefreshing(false);
   }
+
+  console.log(posts);
 
   return (
     <SafeAreaView className="bg-primary h-full">
@@ -50,7 +35,7 @@ const Home = () => {
           <View className="my-6 px-4 space-y-6">
             <View className="justify-between items-start flex-row mb-6">
               <View>
-                <Text className="font-pmedium text-sm text-gray-100">Welcome back!</Text>
+                <Text className="font-pmedium text-sm text-gray-100">Welcome back! ok</Text>
                 <Text className="text-2xl font-psemibold text-white">JS Mastery</Text>
               </View>
               <View className="mt-1.5">
