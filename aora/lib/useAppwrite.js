@@ -5,8 +5,7 @@ const useAppwrite = (fn) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchData = async () => {
+    const fetchData = async () => {
         setIsLoading(true);
         try {
             // const response = await getAllPosts();
@@ -17,12 +16,15 @@ const useAppwrite = (fn) => {
         } finally {
             setIsLoading(false);
         }
-        }
+    }
+    useEffect(() => {
         fetchData();
     }, []);
 
+    const refetch = () => fetchData();
+
     // console.log(data);
-    return { data }
+    return { data, isLoading, refetch }
 }
 
 export default useAppwrite
